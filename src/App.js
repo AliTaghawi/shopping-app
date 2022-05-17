@@ -5,6 +5,7 @@ import {Route , Routes, Navigate} from 'react-router-dom'
 import Stor from './components/Stor';
 import Ditales from './components/Ditales';
 import Navbar from './components/common/Navbar';
+import ShopCart from './components/ShopCart';
 
 //contextComponents
 import ProductsContextProvider from './contexts/ProductsContextProvider';
@@ -16,6 +17,7 @@ function App() {
       <CartContextProvider>
         <Navbar />
         <Routes>
+          <Route path='/cart' element={<ShopCart/>} />
           <Route path='/product/:id' element={<Ditales/>} />
           <Route path='/product' element={<Stor/>} />
           <Route path='/*' element={<Navigate to='/product'/>} />

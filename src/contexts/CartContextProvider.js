@@ -1,8 +1,8 @@
 import React , {createContext , useReducer} from 'react';
 
 const counting = item => {
-  const itemsCounter = item.selectedItems.reduce((total , product) => total + product.quantity, 0)
-  const total = item.selectedItems.reduce((total, product) => total + product.quantity * product.price,0).toFixed(2);
+  const itemsCounter = item.reduce((total , product) => total + product.quantity, 0)
+  const total = item.reduce((total, product) => total + product.quantity * product.price,0).toFixed(2);
   return {itemsCounter , total}
 }
 
@@ -26,28 +26,29 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         selectedItems: [...state.selectedItems],
-        ...counting(state)
+        ...counting(state.selectedItems),
+        checkout: false
       }
     case 'REMOVE-ITEM':
       const newSelectedItems = state.selectedItems.filter(item => item.id !== action.payload.id);
       return {
         ...state,
         selectedItems: [...newSelectedItems],
-        ...counting(state)
+        ...counting(newSelectedItems)
       }
     case 'INCREASE':
       const indexI = state.selectedItems.findIndex(item => item.id === action.payload.id);
       state.selectedItems[indexI].quantity++;
       return {
         ...state,
-        ...counting(state)
+        ...counting(state.selectedItems)
       }
     case 'DECREASE':
       const indexD = state.selectedItems.findIndex(item => item.id === action.payload.id);
       state.selectedItems[indexD].quantity--;
       return {
         ...state,
-        ...counting(state)
+        ...counting(state.selectedItems)
       }
     case 'CHECKOUT':
       return {

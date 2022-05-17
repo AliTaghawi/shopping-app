@@ -8,7 +8,7 @@ import removeIcon from '../../icons/trash.svg';
 import { CartContext } from '../../contexts/CartContextProvider';
 
 //founctions
-import { shortentitle , isAdded , quantityConter } from '../../helpers/founctions';
+import { shortentitle , isAdded , quantityConter } from '../../helpers/functions';
 
 const Product = ({productData}) => {
   const {state , dispatch } = useContext(CartContext)
