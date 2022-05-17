@@ -4,4 +4,18 @@ const shortentitle = (title) => {
   return newtitle
 }
 
-export { shortentitle }
+const isAdded = (item , id) => {
+  const resulte = !!item.selectedItems.find(item => item.id === id)
+  return resulte
+}
+
+const quantityConter = (item , id) => {
+  const index = item.selectedItems.findIndex(item => item.id === id);
+  if (index !== -1) {
+    return item.selectedItems[index].quantity
+  } else {
+    // return false
+  }
+}
+
+export { shortentitle , isAdded , quantityConter }

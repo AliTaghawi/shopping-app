@@ -7,15 +7,18 @@ import Ditales from './components/Ditales';
 
 //contextComponents
 import ProductsContextProvider from './contexts/ProductsContextProvider';
+import CartContextProvider from './contexts/CartContextProvider';
 
 function App() {
   return (
     <ProductsContextProvider>
-      <Routes>
-        <Route path='/product/:id' element={<Ditales/>} />
-        <Route path='/product' element={<Stor/>} />
-        <Route path='/*' element={<Navigate to='/product'/>} />
-      </Routes>
+      <CartContextProvider>
+        <Routes>
+          <Route path='/product/:id' element={<Ditales/>} />
+          <Route path='/product' element={<Stor/>} />
+          <Route path='/*' element={<Navigate to='/product'/>} />
+        </Routes>
+      </CartContextProvider>
     </ProductsContextProvider>
   );
 }
